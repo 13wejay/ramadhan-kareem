@@ -1,0 +1,216 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1b4332;
+  --color-primary-light: #2d6a4f;
+  --color-soft-green: #52b788;
+  --color-gold: #d4a017;
+  --color-light-gold: #f0c850;
+  --color-parchment: #f8f6f0;
+  --color-dark-bg: #050505; /* Deep black for OLED */
+  --color-surface-dark: #121212;
+
+  --font-sans: "Inter", "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: "Scheherazade New", "Amiri", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-morph: morph 15s ease-in-out infinite alternate;
+  --animate-aurora: aurora 20s linear infinite;
+}
+
+/* ====================== Base Styles ====================== */
+:root {
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  color-scheme: light dark;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100dvh;
+  background-color: var(--color-parchment);
+  color: #1a1a1a;
+  overflow-x: hidden;
+  transition: color 0.3s ease;
+}
+
+/* ====================== Liquid Backgrounds ====================== */
+.liquid-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  background: linear-gradient(135deg, #fdfbf7 0%, #ebf5f0 50%, #f4f6f0 100%);
+}
+
+.liquid-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.6;
+  animation: var(--animate-float);
+}
+
+.blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #52b788; animation-delay: 0s; }
+.blob-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: #d4a017; animation-delay: -2s; }
+.blob-3 { top: 40%; left: 40%; width: 40vw; height: 40vw; background: #2d6a4f; animation-delay: -4s; filter: blur(60px); opacity: 0.4; }
+
+.dark .liquid-bg {
+  background: #050505;
+}
+.dark .blob-1 { background: #1b4332; opacity: 0.4; }
+.dark .blob-2 { background: #b4860b; opacity: 0.3; }
+.dark .blob-3 { background: #0f291e; opacity: 0.5; }
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+/* ====================== Glass Surfaces ====================== */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.05),
+    0 4px 8px rgba(0, 0, 0, 0.02),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  border-radius: 32px;
+}
+
+.dark .glass-panel {
+  background: rgba(20, 20, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.glass-card {
+  @apply glass-panel;
+  padding: 1.5rem;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.glass-card:active {
+  transform: scale(0.98);
+}
+
+/* ====================== Typography ====================== */
+h1, h2, h3, h4 {
+  letter-spacing: -0.02em;
+}
+
+.text-fluid-h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .text-fluid-h1 {
+  background: linear-gradient(135deg, #ffffff 0%, #a7f3d0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ====================== Arabic Text ====================== */
+.arabic-text {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  font-size: 1.5rem;
+  line-height: 2;
+}
+
+.arabic-text-right {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  font-size: 1.5rem;
+  line-height: 2;
+  text-align: right;
+}
+
+/* ====================== Floating Dock ====================== */
+.floating-dock {
+  position: fixed;
+  bottom: calc(1.5rem + var(--safe-area-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  box-shadow: 
+    0 10px 40px -10px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.3);
+  z-index: 1000;
+}
+
+.dark .floating-dock {
+  background: rgba(30, 30, 30, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* ====================== Utilities ====================== */
+.page-container {
+  min-height: 100dvh;
+  padding: 2rem 1.5rem calc(8rem + var(--safe-area-bottom)); /* Extra bottom padding for floating dock */
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.tap-target {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ====================== Animations ====================== */
+.animate-enter {
+  animation: enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes enter {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.countdown-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+/* Custom scrollbar hide */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

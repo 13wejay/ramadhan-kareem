@@ -1,0 +1,332 @@
+[
+  {
+    "id": "hadith_001",
+    "type": "hadith",
+    "title": "The Virtue of Fasting Ramadhan",
+    "arabicText": "مَنْ صَامَ رَمَضَانَ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ",
+    "transliteration": "Man saama Ramadhana iimaanan wahtisaaban ghufira lahu ma taqaddama min dhanbih",
+    "translation": "Whoever fasts Ramadhan out of faith and hoping for reward, his previous sins will be forgiven.",
+    "source": "Sahih Bukhari, Hadith 38",
+    "content": "This hadith shows the immense reward of fasting with sincerity.",
+    "reflection": "What is your intention for fasting this Ramadhan? Take a moment to renew your niyyah."
+  },
+  {
+    "id": "hadith_002",
+    "type": "hadith",
+    "title": "Night Prayer in Ramadhan",
+    "arabicText": "مَنْ قَامَ رَمَضَانَ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ",
+    "transliteration": "Man qaama Ramadhana iimaanan wahtisaaban ghufira lahu ma taqaddama min dhanbih",
+    "translation": "Whoever stands (in prayer) during Ramadhan out of faith and hoping for reward, his previous sins will be forgiven.",
+    "source": "Sahih Bukhari, Hadith 37",
+    "content": "Tarawih and Qiyam are unique opportunities in Ramadhan.",
+    "reflection": "How do you feel when you stand before Allah in prayer at night?"
+  },
+  {
+    "id": "hadith_003",
+    "type": "hadith",
+    "title": "Fasting is a Shield",
+    "arabicText": "الصِّيَامُ جُنَّةٌ",
+    "transliteration": "As-siyaamu junnah",
+    "translation": "Fasting is a shield (from sins and from Hell).",
+    "source": "Sahih Bukhari, Hadith 1894",
+    "content": "Fasting protects the believer in both worlds.",
+    "reflection": "Think of fasting not as deprivation, but as protection and purification."
+  },
+  {
+    "id": "hadith_004",
+    "type": "hadith",
+    "title": "The Reward of the Fasting Person",
+    "arabicText": "لِلصَّائِمِ فَرْحَتَانِ: فَرْحَةٌ عِنْدَ فِطْرِهِ وَفَرْحَةٌ عِنْدَ لِقَاءِ رَبِّهِ",
+    "transliteration": "Lis-saa'imi farhataan: farhatun 'inda fitrihi wa farhatun 'inda liqaa'i rabbih",
+    "translation": "The fasting person has two joys: joy when breaking the fast and joy when meeting the Lord.",
+    "source": "Sahih Muslim, Hadith 1151",
+    "content": "The happiness of iftar is a small taste of the joy of meeting Allah.",
+    "reflection": "As you break your fast today, feel the gratitude and joy that comes with worship."
+  },
+  {
+    "id": "hadith_005",
+    "type": "hadith",
+    "title": "Gates of Paradise",
+    "arabicText": "إِذَا دَخَلَ رَمَضَانُ فُتِّحَتْ أَبْوَابُ الْجَنَّةِ وَغُلِّقَتْ أَبْوَابُ النَّارِ وَصُفِّدَتِ الشَّيَاطِينُ",
+    "transliteration": "Idha dakhala Ramadhanu futtihat abwaabul-jannah wa ghulliqat abwaabun-naar wa suffidatish-shayaateen",
+    "translation": "When Ramadhan begins, the gates of Paradise are opened, the gates of Hell are closed, and the devils are chained.",
+    "source": "Sahih Bukhari, Hadith 1899",
+    "content": "Ramadhan is a month of unique divine mercy.",
+    "reflection": "With the devils chained, any wrong we do is from our own nafs. Use this month to reform habits."
+  },
+  {
+    "id": "quran_001",
+    "type": "quran",
+    "title": "The Month of the Quran",
+    "arabicText": "شَهْرُ رَمَضَانَ الَّذِي أُنزِلَ فِيهِ الْقُرْآنُ هُدًى لِّلنَّاسِ",
+    "transliteration": "Shahru Ramadhana alladhii unzila fiihil Qur'aanu hudan lin naas",
+    "translation": "The month of Ramadhan is that in which the Quran was revealed as guidance for the people.",
+    "source": "Surah Al-Baqarah, 2:185",
+    "content": "This ayah establishes the intimate connection between Ramadhan and the Quran.",
+    "reflection": "The Quran was sent down in this month for you. How will you engage with it today?"
+  },
+  {
+    "id": "quran_002",
+    "type": "quran",
+    "title": "Fasting is Prescribed for You",
+    "arabicText": "يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ كَمَا كُتِبَ عَلَى الَّذِينَ مِن قَبْلِكُمْ لَعَلَّكُمْ تَتَّقُونَ",
+    "transliteration": "Yaa ayyuhalladhiina aamanuu kutiba 'alaykumus-siyaamu kamaa kutiba 'alalladhiina min qablikum la'allakum tattaquun",
+    "translation": "O you who believe, fasting has been prescribed for you as it was prescribed for those before you, that you may become righteous.",
+    "source": "Surah Al-Baqarah, 2:183",
+    "content": "Fasting is a universal practice across divine religions.",
+    "reflection": "The goal of fasting is taqwa (God-consciousness). Are you growing closer to that goal?"
+  },
+  {
+    "id": "quran_003",
+    "type": "quran",
+    "title": "Allah is Near",
+    "arabicText": "وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ",
+    "transliteration": "Wa idhaa sa'alaka 'ibaadii 'annii fa innii qariib. Ujiibu da'watad-daa'i idhaa da'aan",
+    "translation": "And when My servants ask you about Me — indeed I am near. I respond to the invocation of the supplicant when he calls upon Me.",
+    "source": "Surah Al-Baqarah, 2:186",
+    "content": "This ayah appears immediately after the verses on fasting, emphasizing the power of du'a in Ramadhan.",
+    "reflection": "Allah is near. Make du'a with certainty that He hears every whisper of your heart."
+  },
+  {
+    "id": "quran_004",
+    "type": "quran",
+    "title": "The Night of Decree",
+    "arabicText": "لَيْلَةُ الْقَدْرِ خَيْرٌ مِّنْ أَلْفِ شَهْرٍ",
+    "transliteration": "Laylatul-Qadri khayrun min alfi shahr",
+    "translation": "The Night of Decree is better than a thousand months.",
+    "source": "Surah Al-Qadr, 97:3",
+    "content": "Laylatul Qadr falls in the last ten nights of Ramadhan.",
+    "reflection": "One night of worship equals over 83 years. Are you prepared for the last ten nights?"
+  },
+  {
+    "id": "quran_005",
+    "type": "quran",
+    "title": "Patience and Gratitude",
+    "arabicText": "وَلَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+    "transliteration": "Wa la'in shakartum la azeedannakum",
+    "translation": "If you are grateful, I will surely increase you (in favor).",
+    "source": "Surah Ibrahim, 14:7",
+    "content": "Gratitude is a key to abundance from Allah.",
+    "reflection": "List three things you are grateful for today. Gratitude multiplies blessings."
+  },
+  {
+    "id": "name_001",
+    "type": "names_of_allah",
+    "title": "Ar-Rahman — The Most Gracious",
+    "arabicText": "ٱلرَّحْمَٰنُ",
+    "transliteration": "Ar-Rahman",
+    "translation": "The Most Gracious — whose mercy encompasses all of creation without exception.",
+    "content": "Ar-Rahman is the Name that reflects Allah's all-encompassing mercy.",
+    "reflection": "Reflect on one way Allah's mercy has shown up in your life today."
+  },
+  {
+    "id": "name_002",
+    "type": "names_of_allah",
+    "title": "Ar-Raheem — The Most Merciful",
+    "arabicText": "ٱلرَّحِيمُ",
+    "transliteration": "Ar-Raheem",
+    "translation": "The Most Merciful — who shows special mercy to the believers.",
+    "content": "While Ar-Rahman is universal mercy, Ar-Raheem is mercy directed especially toward the faithful.",
+    "reflection": "As a believer, know that Allah has a special mercy reserved for you. Seek it through worship."
+  },
+  {
+    "id": "name_003",
+    "type": "names_of_allah",
+    "title": "Al-Ghaffar — The Oft-Forgiving",
+    "arabicText": "ٱلْغَفَّارُ",
+    "transliteration": "Al-Ghaffar",
+    "translation": "The Oft-Forgiving — who repeatedly forgives sins.",
+    "content": "No matter how many times we slip, Allah's forgiveness is available.",
+    "reflection": "Ramadhan is the month of forgiveness. Turn to Al-Ghaffar with sincere repentance today."
+  },
+  {
+    "id": "name_004",
+    "type": "names_of_allah",
+    "title": "As-Samee' — The All-Hearing",
+    "arabicText": "ٱلسَّمِيعُ",
+    "transliteration": "As-Samee'",
+    "translation": "The All-Hearing — who hears every sound, every whisper, every thought.",
+    "content": "Allah hears every du'a, every silent plea, every tear that falls.",
+    "reflection": "Speak to Allah knowing He hears you. Your du'a is never lost."
+  },
+  {
+    "id": "name_005",
+    "type": "names_of_allah",
+    "title": "Al-Kareem — The Most Generous",
+    "arabicText": "ٱلْكَرِيمُ",
+    "transliteration": "Al-Kareem",
+    "translation": "The Most Generous — whose generosity knows no bounds.",
+    "content": "Allah gives without being asked and even more when He is asked.",
+    "reflection": "Be generous in Ramadhan as Allah is generous. Even a smile is charity."
+  },
+  {
+    "id": "seerah_001",
+    "type": "seerah",
+    "title": "The Prophet's Generosity in Ramadhan",
+    "content": "Ibn Abbas reported that the Prophet ﷺ was the most generous of people, and he was most generous during Ramadhan when Jibreel would meet him. Jibreel used to meet him every night in Ramadhan to review the Quran. The Prophet ﷺ was more generous than the blowing wind.",
+    "source": "Sahih Bukhari",
+    "reflection": "The Prophet ﷺ increased in generosity during Ramadhan. What extra act of kindness can you do today?"
+  },
+  {
+    "id": "seerah_002",
+    "type": "seerah",
+    "title": "Revelation Began in Ramadhan",
+    "content": "The first verses of the Quran were revealed to Prophet Muhammad ﷺ in the Cave of Hira during Ramadhan. The angel Jibreel appeared and commanded: 'Read!' (Iqra'). This moment changed the course of human history forever.",
+    "source": "Sahih Bukhari",
+    "reflection": "The Quran first descended in Ramadhan. Honor this month by deepening your relationship with the Book of Allah."
+  },
+  {
+    "id": "seerah_003",
+    "type": "seerah",
+    "title": "The Battle of Badr",
+    "content": "The decisive Battle of Badr took place on 17th Ramadhan, 2 AH. Despite being vastly outnumbered (313 vs 1000), the Muslims achieved a miraculous victory with divine aid. This battle established the Muslim community and proved that faith overcomes numbers.",
+    "source": "Ibn Hisham's Sirah",
+    "reflection": "Ramadhan is a month of victory — over enemies both external and internal. What inner battle will you win today?"
+  },
+  {
+    "id": "seerah_004",
+    "type": "seerah",
+    "title": "I'tikaf in the Last Ten Nights",
+    "content": "The Prophet ﷺ would perform i'tikaf (spiritual retreat in the mosque) during the last ten nights of Ramadhan, dedicating himself entirely to worship. He would stay in the mosque day and night, seeking Laylatul Qadr.",
+    "source": "Sahih Bukhari & Muslim",
+    "reflection": "Even if you can't do full i'tikaf, dedicate extra time to worship in the last ten nights."
+  },
+  {
+    "id": "seerah_005",
+    "type": "seerah",
+    "title": "The Conquest of Makkah",
+    "content": "The peaceful conquest of Makkah occurred on 20th Ramadhan, 8 AH. The Prophet ﷺ entered Makkah with 10,000 companions and granted a general amnesty to all its inhabitants, showing remarkable mercy and forgiveness.",
+    "source": "Ibn Hisham's Sirah",
+    "reflection": "The Prophet ﷺ conquered Makkah with mercy, not revenge. Is there someone you need to forgive this Ramadhan?"
+  },
+  {
+    "id": "fact_001",
+    "type": "ramadhan_fact",
+    "title": "Ramadhan Means Scorching Heat",
+    "content": "The word 'Ramadhan' comes from the Arabic root 'r-m-d' (رمض), which means intense heat or scorching. It was named so because it originally fell in the hot summer months, or because fasting burns away sins like intense heat burns the ground.",
+    "reflection": "Let the 'heat' of fasting purify your soul and burn away bad habits."
+  },
+  {
+    "id": "fact_002",
+    "type": "ramadhan_fact",
+    "title": "1.8 Billion Muslims Fast",
+    "content": "Approximately 1.8 billion Muslims around the world observe Ramadhan. From the Arctic Circle where fasts can last 20+ hours to equatorial regions where fasts are around 12 hours, the whole ummah fasts together.",
+    "reflection": "You are part of a global community of believers. Your worship connects you to Muslims everywhere."
+  },
+  {
+    "id": "fact_003",
+    "type": "ramadhan_fact",
+    "title": "The Quran was Completed in Ramadhan",
+    "content": "In the final Ramadhan of the Prophet's ﷺ life, he reviewed the entire Quran twice with Jibreel. This established the tradition of completing the Quran during Ramadhan.",
+    "reflection": "Even reading a few pages daily can help you connect deeply with the Quran this month."
+  },
+  {
+    "id": "fact_004",
+    "type": "ramadhan_fact",
+    "title": "Fasting Benefits the Body",
+    "content": "Modern science has confirmed numerous health benefits of intermittent fasting, including improved insulin sensitivity, cellular repair (autophagy), reduced inflammation, and better heart health. The Prophet ﷺ recommended fasting 1400 years ago.",
+    "reflection": "SubhanAllah — Allah prescribed fasting for spiritual growth, and it also heals the body."
+  },
+  {
+    "id": "fact_005",
+    "type": "ramadhan_fact",
+    "title": "The Night of a Thousand Months",
+    "content": "Laylatul Qadr (the Night of Decree) is better than 1000 months — that's over 83 years of worship! It falls in the odd nights of the last ten days of Ramadhan. The Prophet ﷺ said to seek it in the last ten nights.",
+    "reflection": "Don't miss the last ten nights. Even one night of sincere worship could equal a lifetime."
+  },
+  {
+    "id": "dua_001",
+    "type": "dua",
+    "title": "Du'a for Breaking Fast",
+    "arabicText": "اللَّهُمَّ إِنِّي لَكَ صُمْتُ وَبِكَ آمَنْتُ وَعَلَيْكَ تَوَكَّلْتُ وَعَلَى رِزْقِكَ أَفْطَرْتُ",
+    "transliteration": "Allahumma inni laka sumtu wa bika aamantu wa alayka tawakkaltu wa ala rizqika aftartu",
+    "translation": "O Allah, for You I fasted, in You I believe, upon You I rely, and with Your provision I break my fast.",
+    "source": "Abu Dawud",
+    "content": "This du'a at iftar time is a moment of accepted supplication.",
+    "reflection": "Say this du'a with full presence at the moment of Iftar — feel the weight of each word."
+  },
+  {
+    "id": "dua_002",
+    "type": "dua",
+    "title": "Du'a for Laylatul Qadr",
+    "arabicText": "اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي",
+    "transliteration": "Allahumma innaka 'afuwwun tuhibbul 'afwa fa'fu 'anni",
+    "translation": "O Allah, You are the Pardoner and You love to pardon, so pardon me.",
+    "source": "Tirmidhi",
+    "content": "Aisha (RA) asked the Prophet ﷺ what to say on Laylatul Qadr, and he taught her this profound du'a.",
+    "reflection": "Memorize this du'a and repeat it often in the last ten nights."
+  },
+  {
+    "id": "dua_003",
+    "type": "dua",
+    "title": "Du'a Before Eating",
+    "arabicText": "بِسْمِ اللَّهِ وَبَرَكَةِ اللَّهِ",
+    "transliteration": "Bismillahi wa barakatillah",
+    "translation": "In the name of Allah and with the blessing of Allah.",
+    "source": "Abu Dawud, Tirmidhi",
+    "content": "Begin every meal with bismillah for barakah.",
+    "reflection": "Never underestimate the small du'as. They invite barakah into everything you do."
+  },
+  {
+    "id": "dua_004",
+    "type": "dua",
+    "title": "Du'a for Guidance",
+    "arabicText": "رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي",
+    "transliteration": "Rabbi-shrah li sadri wa yassir li amri",
+    "translation": "My Lord, expand for me my chest and ease for me my task.",
+    "source": "Surah Taha, 20:25-26",
+    "content": "Prophet Musa (AS) made this du'a before his great mission.",
+    "reflection": "Ask Allah to open your heart and ease your path. He responds to those who call."
+  },
+  {
+    "id": "dua_005",
+    "type": "dua",
+    "title": "Du'a for Forgiveness",
+    "arabicText": "أَسْتَغْفِرُ اللَّهَ الَّذِي لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ وَأَتُوبُ إِلَيْهِ",
+    "transliteration": "Astaghfirullahal-ladhi la ilaha illa huwal-hayyul-qayyumu wa atuubu ilayh",
+    "translation": "I seek forgiveness from Allah, there is no god but He, the Living, the Self-Sustaining, and I repent to Him.",
+    "source": "Abu Dawud, Tirmidhi",
+    "content": "The Prophet ﷺ used to seek forgiveness more than 70 times a day.",
+    "reflection": "Make istighfar a constant companion in your day, especially in Ramadhan."
+  },
+  {
+    "id": "quote_001",
+    "type": "quote",
+    "title": "The Purpose of Fasting",
+    "content": "Fasting is not merely physical hunger. It is the hunger of the soul for nearness to Allah.",
+    "source": "Imam Al-Ghazali",
+    "reflection": "Let your fast be more than abstaining from food. Fast with your eyes, tongue, and heart."
+  },
+  {
+    "id": "quote_002",
+    "type": "quote",
+    "title": "Taqwa Through Fasting",
+    "content": "The fast is a shield against the fire and protection from sins. So one who fasts should not be vulgar or argue.",
+    "source": "Imam Ibn Rajab al-Hanbali",
+    "reflection": "Guard your fast from being nullified by bad speech and actions."
+  },
+  {
+    "id": "quote_003",
+    "type": "quote",
+    "title": "The Best of You",
+    "content": "The best of you are those who learn the Quran and teach it.",
+    "source": "Prophet Muhammad ﷺ (Sahih Bukhari)",
+    "reflection": "In Ramadhan, commit to learning even one new surah and sharing knowledge with others."
+  },
+  {
+    "id": "quote_004",
+    "type": "quote",
+    "title": "Du'a is Worship",
+    "content": "Du'a is the essence of worship. Nothing is more honored before Allah than du'a.",
+    "source": "Prophet Muhammad ﷺ (Tirmidhi)",
+    "reflection": "Never feel your du'a is too small or too big. Allah loves to be asked."
+  },
+  {
+    "id": "quote_005",
+    "type": "quote",
+    "title": "Charity Extinguishes Sin",
+    "content": "Charity extinguishes sin as water extinguishes fire.",
+    "source": "Prophet Muhammad ﷺ (Tirmidhi)",
+    "reflection": "Even a small act of charity in Ramadhan carries immense reward. Give what you can today."
+  }
+]

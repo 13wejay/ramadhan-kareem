@@ -1,0 +1,144 @@
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Plus } from 'lucide-react';
+import { useChecklistStore } from '../store/useChecklistStore';
+import { useNavigate } from 'react-router-dom';
+import ChecklistItem from '../components/ChecklistItem';
+import Modal from '../components/Modal';
+import WeeklyChart from '../components/WeeklyChart';
+
+export default function Checklist() {
+  const navigate = useNavigate();
+  const { todayRecord, toggleItem, updateItemData, addCustomItem, completedCount, totalCount } = useChecklistStore();
+  const [quranModal, setQuranModal] = useState(false);
+  const [quranPages, setQuranPages] = useState('');
+  const [customModal, setCustomModal] = useState(false);
+  const [customLabel, setCustomLabel] = useState('');
+  const [showGraph, setShowGraph] = useState(false);
+
+  // Auto-show graph if progress is high? No, let's keep it toggle or always on top if nice.
+  // Actually, standard design: always show a mini summary or graph.
+  // For now let's keep it clean.
+
+  const completed = completedCount();
+  const total = totalCount();
+  const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+  const handleQuranSave = () => {
+    if (!quranPages) return;
+    updateItemData('quran', parseInt(quranPages), 'pages');
+    setQuranModal(false);
+    setQuranPages('');
+  };
+
+  const handleAddCustom = () => {
+    if (!customLabel.trim()) return;
+    addCustomItem(customLabel.trim(), '✅');
+    setCustomModal(false);
+    setCustomLabel('');
+  };
+
+  return (
+    <div className="page-container space-y-8 pb-32">
+      {/* Header */}
+      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="flex items-end justify-between px-2">
+        <div>
+           <h1 className="text-fluid-h1 text-4xl">Checklist</h1>
+           <p className="text-sm text-gray-500 font-medium">Track your spiritual habits</p>
+        </div>
+        <div className="text-right">
+           <span className="text-3xl font-light countdown-mono text-[#52B788]">{progress}%</span>
+           <p className="text-xs text-gray-400 uppercase tracking-widest">Done</p>
+        </div>
+      </motion.div>
+
+      {/* Weekly Graph (Toggleable or Always Visible - let's make it always visible but collapsible?) 
+          Let's make it a nice glass card at top */}
+      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+        <WeeklyChart />
+      </motion.div>
+
+      {/* Items List */}
+      <div className="space-y-3">
+        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest px-2 mb-2">Today's Goals</h3>
+        <AnimatePresence mode="popLayout">
+          {todayRecord?.items.map((item) => (
+            <ChecklistItem
+              key={item.id}
+              id={item.id}
+              label={item.label}
+              completed={item.completed}
+              customData={item.customData ? { value: item.customData.value, label: item.customData.unit } : null}
+              onToggle={() => {
+                if (item.id === 'quran' && !item.completed) {
+                  setQuranModal(true);
+                } else if (item.id === 'zikr' && !item.completed) {
+                  navigate('/zikr');
+                } else {
+                  toggleItem(item.id);
+                }
+              }}
+              onAction={
+                item.id === 'quran'
+                  ? () => setQuranModal(true)
+                  : item.id === 'zikr'
+                    ? () => navigate('/zikr')
+                    : undefined
+              }
+            />
+          ))}
+        </AnimatePresence>
+      </div>
+
+      {/* Add Custom Item FAB */}
+      <motion.button
+        whileTap={{ scale: 0.95 }}
+        onClick={() => setCustomModal(true)}
+        className="fixed bottom-28 right-6 w-14 h-14 rounded-full bg-[#1b4332] text-white flex items-center justify-center shadow-2xl shadow-[#1b4332]/40 z-40 hover:bg-[#2d6a4f] transition-colors"
+      >
+        <Plus size={24} />
+      </motion.button>
+
+      {/* Modals */}
+      <Modal isOpen={quranModal} onClose={() => setQuranModal(false)} title="📖 Reading">
+        <div className="space-y-6 text-center">
+          <p className="text-gray-500">How many pages did you read?</p>
+          <input
+            type="number"
+            value={quranPages}
+            onChange={(e) => setQuranPages(e.target.value)}
+            className="w-full text-center text-4xl font-light countdown-mono bg-transparent border-b-2 border-gray-200 focus:border-[#52B788] focus:outline-none py-2"
+            autoFocus
+            placeholder="0"
+          />
+          <button
+            onClick={handleQuranSave}
+            className="w-full py-4 rounded-2xl bg-[#52B788] text-white font-bold shadow-lg shadow-[#52B788]/30"
+          >
+            Save Progress
+          </button>
+        </div>
+      </Modal>
+
+      <Modal isOpen={customModal} onClose={() => setCustomModal(false)} title="New Habit">
+        <div className="space-y-6">
+          <input
+            type="text"
+            value={customLabel}
+            onChange={(e) => setCustomLabel(e.target.value)}
+            placeholder="Goal name..."
+            className="w-full px-5 py-4 rounded-2xl bg-gray-50 dark:bg-white/5 border-none focus:ring-2 focus:ring-[#52B788]"
+            autoFocus
+          />
+          <button
+            onClick={handleAddCustom}
+            disabled={!customLabel.trim()}
+            className="w-full py-4 rounded-2xl bg-[#1b4332] text-white font-bold shadow-lg disabled:opacity-50"
+          >
+            Add Habit
+          </button>
+        </div>
+      </Modal>
+    </div>
+  );
+}
