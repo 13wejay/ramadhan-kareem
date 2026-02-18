@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Home, Check, Target, Clock, Lightbulb } from 'lucide-react';
+import { Home, Check, Target, Clock, Lightbulb, Settings } from 'lucide-react';
 
 const navItems = [
   { path: '/home', icon: Home, label: 'Home' },
@@ -8,6 +8,7 @@ const navItems = [
   { path: '/goals', icon: Target, label: 'Goals' },
   { path: '/prayer', icon: Clock, label: 'Prayer' },
   { path: '/insight', icon: Lightbulb, label: 'Insight' },
+  { path: '/settings', icon: Settings, label: 'Settings' },
 ];
 
 export default function BottomNav() {

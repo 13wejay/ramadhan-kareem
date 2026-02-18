@@ -144,14 +144,14 @@ export default function Goals() {
               onChange={(e) => setTargetValue(e.target.value)}
               placeholder="Target"
               min="1"
-              className="flex-1 px-5 py-4 rounded-2xl bg-gray-50 dark:bg-white/5 border-none focus:ring-2 focus:ring-[#52B788]"
+              className="flex-1 max-w-1/2 px-5 py-4 rounded-2xl bg-gray-50 dark:bg-white/5 border-none focus:ring-2 focus:ring-[#52B788]"
             />
             <input
               type="text"
               value={unit}
               onChange={(e) => setUnit(e.target.value)}
-              placeholder="Unit (pages...)"
-              className="flex-1 px-5 py-4 rounded-2xl bg-gray-50 dark:bg-white/5 border-none focus:ring-2 focus:ring-[#52B788]"
+              placeholder="Unit"
+              className="flex-1 max-w-1/3 px-5 py-4 rounded-2xl bg-gray-50 dark:bg-white/5 border-none focus:ring-2 focus:ring-[#52B788]"
             />
           </div>
           <button

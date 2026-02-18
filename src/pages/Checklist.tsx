@@ -9,16 +9,18 @@ import WeeklyChart from '../components/WeeklyChart';
 
 export default function Checklist() {
   const navigate = useNavigate();
-  const { todayRecord, toggleItem, updateItemData, addCustomItem, completedCount, totalCount } = useChecklistStore();
+  const { 
+    todayRecord, toggleItem, updateItemData, 
+    addCustomItem, removeCustomItem, renameCustomItem,
+    completedCount, totalCount 
+  } = useChecklistStore();
+  
   const [quranModal, setQuranModal] = useState(false);
   const [quranPages, setQuranPages] = useState('');
+  
   const [customModal, setCustomModal] = useState(false);
   const [customLabel, setCustomLabel] = useState('');
-  const [showGraph, setShowGraph] = useState(false);
-
-  // Auto-show graph if progress is high? No, let's keep it toggle or always on top if nice.
-  // Actually, standard design: always show a mini summary or graph.
-  // For now let's keep it clean.
+  const [editId, setEditId] = useState<string | null>(null);
 
   const completed = completedCount();
   const total = totalCount();
@@ -31,11 +33,29 @@ export default function Checklist() {
     setQuranPages('');
   };
 
-  const handleAddCustom = () => {
+  const handleCustomSubmit = () => {
     if (!customLabel.trim()) return;
-    addCustomItem(customLabel.trim(), '✅');
+    
+    if (editId) {
+      renameCustomItem(editId, customLabel.trim());
+    } else {
+      addCustomItem(customLabel.trim(), '✅');
+    }
+    
     setCustomModal(false);
     setCustomLabel('');
+    setEditId(null);
+  };
+
+  const openCustomModal = (item?: { id: string; label: string }) => {
+    if (item) {
+      setEditId(item.id);
+      setCustomLabel(item.label);
+    } else {
+      setEditId(null);
+      setCustomLabel('');
+    }
+    setCustomModal(true);
   };
 
   return (
@@ -52,8 +72,7 @@ export default function Checklist() {
         </div>
       </motion.div>
 
-      {/* Weekly Graph (Toggleable or Always Visible - let's make it always visible but collapsible?) 
-          Let's make it a nice glass card at top */}
+      {/* Weekly Graph */}
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
         <WeeklyChart />
       </motion.div>
@@ -85,6 +104,8 @@ export default function Checklist() {
                     ? () => navigate('/zikr')
                     : undefined
               }
+              onDelete={item.isCustom ? () => removeCustomItem(item.id) : undefined}
+              onEdit={item.isCustom ? () => openCustomModal(item) : undefined}
             />
           ))}
         </AnimatePresence>
@@ -93,7 +114,7 @@ export default function Checklist() {
       {/* Add Custom Item FAB */}
       <motion.button
         whileTap={{ scale: 0.95 }}
-        onClick={() => setCustomModal(true)}
+        onClick={() => openCustomModal()}
         className="fixed bottom-28 right-6 w-14 h-14 rounded-full bg-[#1b4332] text-white flex items-center justify-center shadow-2xl shadow-[#1b4332]/40 z-40 hover:bg-[#2d6a4f] transition-colors"
       >
         <Plus size={24} />
@@ -120,7 +141,7 @@ export default function Checklist() {
         </div>
       </Modal>
 
-      <Modal isOpen={customModal} onClose={() => setCustomModal(false)} title="New Habit">
+      <Modal isOpen={customModal} onClose={() => setCustomModal(false)} title={editId ? "Edit Habit" : "New Habit"}>
         <div className="space-y-6">
           <input
             type="text"
@@ -131,11 +152,11 @@ export default function Checklist() {
             autoFocus
           />
           <button
-            onClick={handleAddCustom}
+            onClick={handleCustomSubmit}
             disabled={!customLabel.trim()}
             className="w-full py-4 rounded-2xl bg-[#1b4332] text-white font-bold shadow-lg disabled:opacity-50"
           >
-            Add Habit
+            {editId ? "Update Habit" : "Add Habit"}
           </button>
         </div>
       </Modal>

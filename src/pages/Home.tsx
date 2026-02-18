@@ -96,8 +96,10 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center pt-8"
+        className="text-center pt-8 relative"
       >
+
+
         <p className="arabic-text text-[#d4a017] text-lg mb-2 opacity-80">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
         <h1 className="text-fluid-h1 mb-2">Ramadhan<br/>Kareem</h1>
         <p className="text-sm uppercase tracking-widest text-gray-500 font-medium">
@@ -204,17 +206,8 @@ export default function Home() {
         </motion.div>
       )}
 
-      {/* Settings link */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
-        className="text-center pt-8 pb-4"
-      >
-        <Link to="/settings" className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel text-sm text-gray-500 hover:text-[#1b4332] transition-colors">
-          <Settings size={14} /> <span>Settings</span>
-        </Link>
-      </motion.div>
+      {/* Bottom Spacer */}
+      <div className="h-4"></div>
     </div>
   );
 }

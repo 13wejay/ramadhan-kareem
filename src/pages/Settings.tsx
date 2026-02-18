@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  User, Moon, Sun, Bell, BellOff, Download, Trash2,
-  BarChart3, ChevronRight, LogOut, Monitor
+  Bell, BellOff, Download, Trash2,
+  BarChart3, ChevronRight, LogOut
 } from 'lucide-react';
 import { useAuthStore } from '../store/useAuthStore';
 import { useSettingsStore } from '../store/useSettingsStore';
@@ -45,11 +45,7 @@ export default function Settings() {
     navigate('/onboarding');
   };
 
-  const themeOptions: { value: 'light' | 'dark' | 'auto'; label: string; icon: React.ReactNode }[] = [
-    { value: 'light', label: 'Light', icon: <Sun size={18} /> },
-    { value: 'dark', label: 'Dark', icon: <Moon size={18} /> },
-    { value: 'auto', label: 'System', icon: <Monitor size={18} /> },
-  ];
+
 
   return (
     <div className="page-container space-y-10 pb-32">
@@ -75,26 +71,7 @@ export default function Settings() {
 
       {/* Settings Sections */}
       <div className="space-y-8">
-        {/* Appearance */}
-        <section>
-          <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest px-2 mb-3">Appearance</h3>
-          <div className="glass-panel p-2 flex gap-1">
-            {themeOptions.map((opt) => (
-              <button
-                key={opt.value}
-                onClick={() => updateSettings({ theme: opt.value })}
-                className={`flex-1 flex flex-col items-center justify-center gap-2 py-4 rounded-xl transition-all ${
-                  settings.theme === opt.value
-                    ? 'bg-white shadow-lg text-[#1b4332]'
-                    : 'text-gray-500 hover:bg-black/5 dark:hover:bg-white/5'
-                }`}
-              >
-                {opt.icon}
-                <span className="text-xs font-bold">{opt.label}</span>
-              </button>
-            ))}
-          </div>
-        </section>
+
 
         {/* Notifications */}
         <section>

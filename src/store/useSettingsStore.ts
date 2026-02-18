@@ -22,7 +22,7 @@ export interface AppSettings {
 }
 
 const defaultSettings: AppSettings = {
-  theme: 'auto',
+  theme: 'light',
   language: 'en',
   checklistResetAt: 'midnight',
   tarawihRakat: 20,

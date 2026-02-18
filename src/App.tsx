@@ -26,19 +26,8 @@ export default function App() {
   const theme = useSettingsStore((s) => s.settings.theme);
 
   useEffect(() => {
-    const root = document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-    } else if (theme === 'light') {
-      root.classList.remove('dark');
-    } else {
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        root.classList.add('dark');
-      } else {
-        root.classList.remove('dark');
-      }
-    }
-  }, [theme]);
+    document.documentElement.classList.remove('dark');
+  }, []);
 
   const showNav = isOnboarded;
 

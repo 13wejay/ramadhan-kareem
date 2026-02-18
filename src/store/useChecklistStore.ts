@@ -26,6 +26,8 @@ interface ChecklistState {
   toggleItem: (itemId: string) => void;
   updateItemData: (itemId: string, value: number, unit: string) => void;
   addCustomItem: (label: string, icon: string) => void;
+  removeCustomItem: (itemId: string) => void;
+  renameCustomItem: (itemId: string, newLabel: string) => void;
   completedCount: () => number;
   totalCount: () => number;
 }
@@ -127,6 +129,42 @@ export const useChecklistStore = create<ChecklistState>()((set, get) => ({
       saveRecord(updated);
       set({ todayRecord: updated });
     }
+  },
+
+  removeCustomItem: (itemId) => {
+    // 1. Remove from local storage custom items template
+    const custom = lsGet<ChecklistItemRecord[]>(STORAGE_KEYS.CUSTOM_ITEMS) || [];
+    const newCustom = custom.filter((i) => i.id !== itemId);
+    lsSet(STORAGE_KEYS.CUSTOM_ITEMS, newCustom);
+
+    // 2. Remove from today's record
+    const record = get().todayRecord;
+    if (record) {
+      const updated = {
+        ...record,
+        items: record.items.filter((i) => i.id !== itemId),
+      };
+      saveRecord(updated);
+      set({ todayRecord: updated });
+    }
+  },
+
+  renameCustomItem: (itemId, newLabel) => {
+     // 1. Update in local storage
+     const custom = lsGet<ChecklistItemRecord[]>(STORAGE_KEYS.CUSTOM_ITEMS) || [];
+     const newCustom = custom.map(i => i.id === itemId ? { ...i, label: newLabel } : i);
+     lsSet(STORAGE_KEYS.CUSTOM_ITEMS, newCustom);
+
+     // 2. Update in today's record
+     const record = get().todayRecord;
+     if (record) {
+       const updated = {
+         ...record,
+         items: record.items.map(i => i.id === itemId ? { ...i, label: newLabel } : i),
+       };
+       saveRecord(updated);
+       set({ todayRecord: updated });
+     }
   },
 
   completedCount: () => get().todayRecord?.items.filter((i) => i.completed).length || 0,
