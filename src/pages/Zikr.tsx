@@ -40,6 +40,7 @@ export default function Zikr() {
   });
 
   const [showComplete, setShowComplete] = useState(false);
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [flash, setFlash] = useState(false);
 
   const currentPhase = PHASES[phase];
@@ -51,8 +52,21 @@ export default function Zikr() {
     setRecord(updated);
   }, [key]);
 
+  const handleReset = useCallback(() => {
+    setShowResetConfirm(true);
+  }, []);
+
+  const confirmReset = useCallback(() => {
+    const reset: ZikrRecord = { date: today, subhanallah: 0, alhamdulillah: 0, allahuakbar: 0, completed: false, completedAt: null };
+    saveRecord(reset);
+    setPhase(0);
+    setShowComplete(false);
+    setShowResetConfirm(false);
+    if (navigator.vibrate) navigator.vibrate(50);
+  }, [today, saveRecord]);
+
   const handleTap = useCallback(() => {
-    if (record.completed) return;
+    if (record.completed || showResetConfirm) return;
 
     const phaseKey = currentPhase.key as 'subhanallah' | 'alhamdulillah' | 'allahuakbar';
     const newCount = (record[phaseKey] as number) + 1;
@@ -217,8 +231,62 @@ export default function Zikr() {
           </div>
         </motion.div>
 
-        <p className="text-xs text-gray-400 mt-8">Tap anywhere to count</p>
+        <p className="text-xs text-gray-400 mt-8 mb-6">Tap anywhere to count</p>
+
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            handleReset();
+          }}
+          className="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-white/10 text-sm font-medium text-gray-500 hover:text-red-500 hover:bg-red-50 transition-colors"
+        >
+          <span>↺</span>
+          <span>Reset Counter</span>
+        </button>
       </div>
+
+      {/* Reset Confirmation Modal */}
+      <AnimatePresence>
+        {showResetConfirm && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowResetConfirm(false);
+            }}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white dark:bg-[#1B4332] rounded-2xl p-6 w-full max-w-sm shadow-xl border border-white/10"
+            >
+              <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">Reset Counter?</h3>
+              <p className="text-gray-500 dark:text-gray-300 mb-6">
+                This will reset your current progress for today to zero. This action cannot be undone.
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setShowResetConfirm(false)}
+                  className="flex-1 py-2.5 rounded-xl bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-white font-medium hover:bg-gray-200 dark:hover:bg-white/20 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={confirmReset}
+                  className="flex-1 py-2.5 rounded-xl bg-red-500 text-white font-medium hover:bg-red-600 transition-colors shadow-lg shadow-red-500/30"
+                >
+                  Reset
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

@@ -58,6 +58,7 @@ export default function Home() {
   const loadInsight = async () => {
     if (!profile) return;
     const day = getRamadhanDay(profile.ramadhanStartDate);
+    if (day < 1) return;
     const data = await getDailyInsight(day);
     setInsight(data);
   };
@@ -103,7 +104,15 @@ export default function Home() {
         <p className="arabic-text text-[#d4a017] text-lg mb-2 opacity-80">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
         <h1 className="text-fluid-h1 mb-2">Ramadhan<br/>Kareem</h1>
         <p className="text-sm uppercase tracking-widest text-gray-500 font-medium">
-          Day {ramadhanDay} · <span className="text-[#1b4332] dark:text-[#52b788]">{todayPrayer?.hijriDate || '...'}</span>
+          {ramadhanDay < 1 ? (
+             <span className="text-[#1b4332] dark:text-[#52b788] font-bold">
+               {1 - ramadhanDay} {(1 - ramadhanDay) === 1 ? 'Day' : 'Days'} Until Ramadhan
+             </span>
+          ) : (
+            <>
+              Day {ramadhanDay} · <span className="text-[#1b4332] dark:text-[#52b788]">{todayPrayer?.hijriDate || '...'}</span>
+            </>
+          )}
         </p>
       </motion.div>
 

@@ -14,7 +14,7 @@ export function getRamadhanDay(ramadhanStartDate: string): number {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const diff = differenceInDays(today, start) + 1;
-  return Math.max(1, Math.min(diff, 30));
+  return Math.min(diff, 30);
 }
 
 export function getSecondsUntil(timeStr: string): number {

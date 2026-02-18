@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import { useChecklistStore } from '../store/useChecklistStore';
@@ -11,9 +11,15 @@ export default function Checklist() {
   const navigate = useNavigate();
   const { 
     todayRecord, toggleItem, updateItemData, 
+    loadToday, // Import loadToday
     addCustomItem, removeCustomItem, renameCustomItem,
     completedCount, totalCount 
   } = useChecklistStore();
+  
+  // Load data on mount
+  useEffect(() => {
+    loadToday();
+  }, []);
   
   const [quranModal, setQuranModal] = useState(false);
   const [quranPages, setQuranPages] = useState('');
