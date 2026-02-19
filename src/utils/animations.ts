@@ -1,41 +1,37 @@
 import { Variants } from 'framer-motion';
 
-// Standard transition physics
+// Standard transition — fast, eased, no spring bounce
 export const transition = {
-  type: 'spring',
-  stiffness: 200,
-  damping: 20,
+  type: 'tween',
+  ease: [0.25, 0.1, 0.25, 1],
+  duration: 0.25,
 } as const;
 
 // Gentler transition for layout changes
 export const layoutTransition = {
-  type: 'spring',
-  stiffness: 300,
-  damping: 30,
+  type: 'tween',
+  ease: [0.25, 0.1, 0.25, 1],
+  duration: 0.2,
 } as const;
 
 // Page transitions
 export const pageVariants: Variants = {
   initial: {
     opacity: 0,
-    y: 20,
-    scale: 0.98,
+    y: 12,
   },
   animate: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: {
       ...transition,
-      staggerChildren: 0.1,
+      staggerChildren: 0.04,
     },
   },
   exit: {
     opacity: 0,
-    y: -20,
-    scale: 0.98,
     transition: {
-      duration: 0.2,
+      duration: 0.15,
     },
   },
 };
@@ -46,15 +42,15 @@ export const staggerContainer: Variants = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.05,
     },
   },
 };
 
 // Simple fade in up for items
 export const fadeInUp: Variants = {
-  initial: { opacity: 0, y: 20 },
-  hidden: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: 12 },
+  hidden: { opacity: 0, y: 12 },
   animate: { 
     opacity: 1, 
     y: 0,
@@ -67,15 +63,14 @@ export const fadeInUp: Variants = {
   },
   exit: { 
     opacity: 0, 
-    y: -10,
-    transition: { duration: 0.2 } 
+    transition: { duration: 0.15 } 
   },
 };
 
 // Scale in for cards/modals
 export const scaleIn: Variants = {
-  initial: { opacity: 0, scale: 0.9 },
-  hidden: { opacity: 0, scale: 0.9 },
+  initial: { opacity: 0, scale: 0.96 },
+  hidden: { opacity: 0, scale: 0.96 },
   animate: { 
     opacity: 1, 
     scale: 1,
@@ -88,8 +83,8 @@ export const scaleIn: Variants = {
   },
   exit: { 
     opacity: 0, 
-    scale: 0.9,
-    transition: { duration: 0.2 } 
+    scale: 0.96,
+    transition: { duration: 0.15 } 
   },
 };
 
@@ -99,13 +94,13 @@ export const listItemVariants: Variants = {
   animate: { 
     opacity: 1, 
     height: 'auto', 
-    marginBottom: 12, // matches space-y-3 roughly (12px)
+    marginBottom: 12,
     transition: layoutTransition 
   },
   exit: { 
     opacity: 0, 
     height: 0, 
     marginBottom: 0,
-    transition: { duration: 0.2 } 
+    transition: { duration: 0.15 } 
   },
 };

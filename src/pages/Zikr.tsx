@@ -120,16 +120,16 @@ export default function Zikr() {
             key={i}
             className="absolute text-2xl"
             initial={{ y: -20, x: Math.random() * 400 - 200, opacity: 1 }}
-            animate={{ y: '100vh', rotate: 720, opacity: 0 }}
-            transition={{ duration: 2 + Math.random() * 2, delay: Math.random() * 0.5 }}
+            animate={{ y: '100vh', rotate: 180, opacity: 0 }}
+            transition={{ duration: 2 + Math.random() * 1.5, delay: Math.random() * 0.4 }}
           >
             {['🌙', '⭐', '✨', '🌿', '💚'][Math.floor(Math.random() * 5)]}
           </motion.div>
         ))}
 
         <motion.span
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
+          animate={{ scale: [1, 1.08, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
           className="text-7xl mb-6"
         >
           🌿
@@ -224,7 +224,7 @@ export default function Zikr() {
           key={currentCount}
           initial={{ scale: 1.3 }}
           animate={{ scale: 1 }}
-          transition={{ type: 'spring', stiffness: 500 }}
+          transition={{ type: 'tween', ease: 'easeOut', duration: 0.15 }}
           className="w-32 h-32 rounded-full flex items-center justify-center border-4"
           style={{ borderColor: currentPhase.color }}
         >

@@ -103,15 +103,15 @@ export default function Onboarding() {
             initial="enter"
             animate="center"
             exit="exit"
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            transition={{ type: 'tween', ease: [0.25, 0.1, 0.25, 1], duration: 0.2 }}
             className="w-full"
           >
             {/* Step 0: Splash */}
             {step === 0 && (
               <div className="text-center space-y-12 py-12">
                 <motion.div
-                  animate={{ rotate: [0, 5, -5, 0], scale: [1, 1.05, 1] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                  animate={{ rotate: [0, 3, -3, 0] }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
                   className="text-9xl relative z-10 drop-shadow-2xl"
                 >
                   🌙
@@ -348,8 +348,8 @@ export default function Onboarding() {
               <div className="text-center space-y-10 py-12">
                 <div className="glass-card !bg-white/60 p-10 relative overflow-hidden">
                     <motion.div
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
+                      animate={{ scale: [1, 1.06, 1] }}
+                      transition={{ duration: 3, repeat: Infinity }}
                       className="text-7xl mb-6"
                     >
                       🌙
