@@ -88,19 +88,16 @@ export const scaleIn: Variants = {
   },
 };
 
-// List item animations (for Reorder or massive lists)
+// List item animations — transform-only (GPU composited, no reflow)
 export const listItemVariants: Variants = {
-  initial: { opacity: 0, height: 0, marginBottom: 0 },
+  initial: { opacity: 0, y: 8 },
   animate: { 
     opacity: 1, 
-    height: 'auto', 
-    marginBottom: 12,
+    y: 0,
     transition: layoutTransition 
   },
   exit: { 
-    opacity: 0, 
-    height: 0, 
-    marginBottom: 0,
-    transition: { duration: 0.15 } 
+    opacity: 0,
+    transition: { duration: 0.12 } 
   },
 };

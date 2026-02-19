@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import ChecklistItem from '../components/ChecklistItem';
 import Modal from '../components/Modal';
 import WeeklyChart from '../components/WeeklyChart';
-import { pageVariants, staggerContainer, fadeInUp, scaleIn } from '../utils/animations';
+import { pageVariants, fadeInUp, scaleIn } from '../utils/animations';
 
 export default function Checklist() {
   const navigate = useNavigate();
@@ -91,9 +91,9 @@ export default function Checklist() {
       </motion.div>
 
       {/* Items List */}
-      <motion.div variants={staggerContainer} initial="hidden" animate="show" className="space-y-3">
+      <div className="space-y-3">
         <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest px-2 mb-2">Today's Goals</h3>
-        <AnimatePresence mode="popLayout" initial={false}>
+        <AnimatePresence mode="sync" initial={false}>
           {todayRecord?.items.map((item) => (
             <ChecklistItem
               key={item.id}
@@ -122,7 +122,7 @@ export default function Checklist() {
             />
           ))}
         </AnimatePresence>
-      </motion.div>
+      </div>
 
       {/* Add Custom Item FAB */}
       <motion.button

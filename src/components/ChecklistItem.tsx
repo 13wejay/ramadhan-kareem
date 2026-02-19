@@ -37,14 +37,13 @@ export default function ChecklistItem({
 }: ChecklistItemProps) {
   return (
     <motion.div
-      layout
       variants={listItemVariants}
       initial="initial"
       animate="animate"
       exit="exit"
       className={`group relative flex items-center gap-5 px-6 py-5 rounded-3xl transition-all duration-300 ${
         completed
-          ? 'bg-white/20 dark:bg-white/5 backdrop-blur-sm'
+          ? 'bg-white/20 dark:bg-white/5'
           : 'glass-panel hover:bg-white/80 active:scale-[0.98]'
       }`}
     >

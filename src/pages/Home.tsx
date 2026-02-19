@@ -61,10 +61,8 @@ export default function Home() {
   const loadInsight = async () => {
     if (!profile) return;
     const day = getRamadhanDay(profile.ramadhanStartDate);
-    
     // If before Ramadhan, show the first insight as a preview/preparation
     const targetDay = day < 1 ? 1 : day;
-    
     try {
       const data = await getDailyInsight(targetDay);
       setInsight(data);
@@ -76,6 +74,7 @@ export default function Home() {
   const completed = completedCount();
   const total = totalCount();
   const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
+  // Use the user's configured start date — they set their own Ramadhan start
   const ramadhanDay = profile ? getRamadhanDay(profile.ramadhanStartDate) : 1;
 
   const handleBookmark = () => {

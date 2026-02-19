@@ -5,7 +5,7 @@ import { useAuthStore } from '../store/useAuthStore';
 import { usePrayerStore } from '../store/usePrayerStore';
 import { fetchPrayerTimes } from '../services/prayerTimesService';
 import PrayerTimeRow from '../components/PrayerTimeRow';
-import { getSecondsUntil } from '../utils/dateHelpers';
+import { getSecondsUntil, getRamadhanDay } from '../utils/dateHelpers';
 import { pageVariants, staggerContainer, fadeInUp } from '../utils/animations';
 
 const PRAYER_LIST = [
@@ -75,9 +75,9 @@ export default function PrayerSchedule() {
        <motion.div variants={fadeInUp} className="flex items-end justify-between px-2">
         <div>
            <h1 className="text-fluid-h1 text-4xl">Prayer<br/>Schedule</h1>
-           {todayPrayer && (
+           {todayPrayer && profile && (
              <p className="text-sm text-gray-500 font-medium mt-2 flex items-center gap-2">
-               <CalendarDays size={14} /> {todayPrayer.hijriDate}
+               <CalendarDays size={14} /> {getRamadhanDay(profile.ramadhanStartDate)} Ramadhan · {todayPrayer.hijriDate?.split(' ').slice(-2).join(' ')}
              </p>
            )}
         </div>
