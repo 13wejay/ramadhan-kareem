@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { useAuthStore } from './store/useAuthStore';
@@ -24,6 +24,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 export default function App() {
   const isOnboarded = useAuthStore((s) => s.isOnboarded());
   const theme = useSettingsStore((s) => s.settings.theme);
+  const location = useLocation();
 
   useEffect(() => {
     document.documentElement.classList.remove('dark');
@@ -32,7 +33,7 @@ export default function App() {
   const showNav = isOnboarded;
 
   return (
-    <div className="min-h-dvh relative">
+    <div className="min-h-dvh relative overflow-hidden">
       {/* Global Animated Background */}
       <div className="liquid-bg">
         <div className="liquid-blob blob-1" />
@@ -41,7 +42,7 @@ export default function App() {
       </div>
 
       <AnimatePresence mode="wait">
-        <Routes>
+        <Routes location={location} key={location.pathname}>
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path="/checklist" element={<ProtectedRoute><Checklist /></ProtectedRoute>} />

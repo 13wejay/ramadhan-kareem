@@ -6,6 +6,7 @@ import { usePrayerStore } from '../store/usePrayerStore';
 import { fetchPrayerTimes } from '../services/prayerTimesService';
 import PrayerTimeRow from '../components/PrayerTimeRow';
 import { getSecondsUntil } from '../utils/dateHelpers';
+import { pageVariants, staggerContainer, fadeInUp } from '../utils/animations';
 
 const PRAYER_LIST = [
   { key: 'Imsak', name: 'Imsak', arabicName: 'إمساك' },
@@ -63,9 +64,15 @@ export default function PrayerSchedule() {
   const nextPrayer = getNextPrayer();
 
   return (
-    <div className="page-container space-y-8 pb-32">
+    <motion.div 
+      className="page-container space-y-8 pb-32"
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
        {/* Header */}
-       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="flex items-end justify-between px-2">
+       <motion.div variants={fadeInUp} className="flex items-end justify-between px-2">
         <div>
            <h1 className="text-fluid-h1 text-4xl">Prayer<br/>Schedule</h1>
            {todayPrayer && (
@@ -85,15 +92,15 @@ export default function PrayerSchedule() {
 
       {/* Error */}
       {error && (
-        <div className="glass-panel !bg-red-500/10 !border-red-500/20 p-4 rounded-2xl flex items-center gap-3">
+        <motion.div variants={fadeInUp} className="glass-panel !bg-red-500/10 !border-red-500/20 p-4 rounded-2xl flex items-center gap-3">
           <WifiOff size={18} className="text-red-500" />
           <p className="text-sm text-red-500 font-medium">{error}</p>
-        </div>
+        </motion.div>
       )}
 
       {/* Timeline */}
       {todayPrayer && (
-        <div className="space-y-4 relative">
+        <motion.div variants={staggerContainer} initial="hidden" animate="show" className="space-y-4 relative">
            
            {/* Timeline Line Vertical Background - handled in Row comp but we can add global line if needed. Row comp is better for segments. */}
 
@@ -107,9 +114,7 @@ export default function PrayerSchedule() {
             return (
               <motion.div
                 key={prayer.key}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.05 }}
+                variants={fadeInUp}
               >
                 <PrayerTimeRow
                   name={prayer.name}
@@ -122,8 +127,8 @@ export default function PrayerSchedule() {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 }

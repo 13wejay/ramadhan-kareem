@@ -5,6 +5,7 @@ import { useAuthStore } from '../store/useAuthStore';
 import { getDailyInsight, getBookmarkedInsights, getBookmarkedIds, toggleBookmark, Insight } from '../services/insightService';
 import { getRamadhanDay } from '../utils/dateHelpers';
 import InsightCard from '../components/InsightCard';
+import { pageVariants, fadeInUp } from '../utils/animations';
 
 export default function DailyInsight() {
   const profile = useAuthStore((s) => s.profile);
@@ -43,9 +44,15 @@ export default function DailyInsight() {
   };
 
   return (
-    <div className="page-container space-y-8 pb-32">
+    <motion.div 
+      className="page-container space-y-8 pb-32"
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       {/* Header */}
-      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="flex items-end justify-between px-2">
+      <motion.div variants={fadeInUp} className="flex items-end justify-between px-2">
         <div>
            <h1 className="text-fluid-h1 text-4xl">Daily<br/>Insight</h1>
            <p className="text-sm text-gray-500 font-medium mt-2">Spiritual nourishment</p>
@@ -115,6 +122,6 @@ export default function DailyInsight() {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 }

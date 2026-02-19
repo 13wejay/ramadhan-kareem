@@ -6,6 +6,7 @@ import { useSettingsStore } from '../store/useSettingsStore';
 import { getCurrentLocation } from '../services/locationService';
 import { requestNotificationPermission } from '../services/notificationService';
 import { ChevronRight, ArrowRight, MapPin, Bell } from 'lucide-react';
+import { pageVariants } from '../utils/animations';
 
 const CALCULATION_METHODS = [
   { id: 1, name: 'Univ. of Islamic Sciences, Karachi' },
@@ -75,7 +76,13 @@ export default function Onboarding() {
   };
 
   return (
-    <div className="min-h-dvh flex flex-col page-container !pt- safe-area-top">
+    <motion.div 
+      className="min-h-dvh flex flex-col page-container !pt- safe-area-top"
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       {/* Progress bar */}
       <div className="w-full max-w-sm mx-auto mb-8 flex gap-2 justify-center pt-8">
         {Array.from({ length: 8 }).map((_, i) => (
@@ -280,20 +287,7 @@ export default function Onboarding() {
                   ))}
                 </div>
 
-                <div className="glass-panel p-2 flex mt-6 gap-2">
-                  <button
-                    onClick={() => setMadhab('shafii')}
-                    className={`flex-1 py-4 rounded-2xl text-sm font-bold transition-all ${madhab === 'shafii' ? 'bg-white shadow text-[#1B4332]' : 'text-gray-400 hover:bg-black/5'}`}
-                  >
-                    Shafi'i / Maliki / Hanbali
-                  </button>
-                  <button
-                    onClick={() => setMadhab('hanafi')}
-                    className={`flex-1 py-4 rounded-2xl text-sm font-bold transition-all ${madhab === 'hanafi' ? 'bg-white shadow text-[#1B4332]' : 'text-gray-400 hover:bg-black/5'}`}
-                  >
-                    Hanafi
-                  </button>
-                </div>
+
                 
                 <button onClick={nextStep} className="w-full mt-6 py-5 rounded-3xl bg-[#52B788] text-white font-bold text-lg shadow-xl shadow-[#52B788]/30 hover:scale-[1.02] transition-transform">
                   Confirm Settings
@@ -379,6 +373,6 @@ export default function Onboarding() {
           </motion.div>
         </AnimatePresence>
       </div>
-    </div>
+    </motion.div>
   );
 }

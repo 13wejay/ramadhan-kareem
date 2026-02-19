@@ -9,6 +9,7 @@ import { useAuthStore } from '../store/useAuthStore';
 import { useGoalsStore } from '../store/useGoalsStore';
 import { lsGet, lsKeys } from '../services/localStorage';
 import { STORAGE_KEYS } from '../utils/storageKeys';
+import { pageVariants, fadeInUp, staggerContainer } from '../utils/animations';
 
 interface ZikrRecord {
   subhanallah: number;
@@ -70,11 +71,16 @@ export default function Summary() {
   ];
 
   return (
-    <div className="page-container space-y-8 pb-32">
+    <motion.div 
+      className="page-container space-y-8 pb-32"
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       {/* Header */}
       <motion.div 
-        initial={{ opacity: 0, y: -20 }} 
-        animate={{ opacity: 1, y: 0 }} 
+        variants={fadeInUp} 
         className="text-center pt-8 relative"
       >
         <Link 
@@ -91,13 +97,11 @@ export default function Summary() {
       </motion.div>
 
       {/* Stats grid */}
-      <div className="grid grid-cols-2 gap-4">
+      <motion.div variants={staggerContainer} initial="hidden" animate="show" className="grid grid-cols-2 gap-4">
         {statCards.map((stat, i) => (
           <motion.div
             key={stat.label}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.08 }}
+            variants={fadeInUp}
             className="glass-card flex flex-col items-center justify-center text-center !p-6 hover:scale-[1.02] transition-transform"
           >
             <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 ${stat.bg}`} style={{ color: stat.color }}>
@@ -109,13 +113,11 @@ export default function Summary() {
             <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">{stat.label}</p>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Share */}
       <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
+        variants={fadeInUp}
         onClick={async () => {
           const text = `🌙 My Ramadhan Summary\n\n📅 ${stats.daysFasted} days fasted\n🕌 ${stats.totalPrayers} prayers completed\n📖 ${stats.quranPages} Quran pages read\n📿 ${stats.totalZikr} Zikr counted\n🎯 ${stats.goalsAchieved}/${stats.totalGoals} goals achieved\n\n— Ramadhan Companion`;
           if (navigator.share) {
@@ -128,6 +130,6 @@ export default function Summary() {
       >
         <Share2 size={20} /> Share Summary
       </motion.button>
-    </div>
+    </motion.div>
   );
 }

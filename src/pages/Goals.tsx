@@ -5,6 +5,7 @@ import { useGoalsStore, Goal } from '../store/useGoalsStore';
 import GoalCard from '../components/GoalCard';
 import Modal from '../components/Modal';
 import { scheduleNotification } from '../services/notificationService';
+import { pageVariants, staggerContainer, fadeInUp, scaleIn } from '../utils/animations';
 
 const CATEGORIES = ['quran', 'prayer', 'charity', 'fasting', 'personal', 'custom'] as const;
 
@@ -57,9 +58,15 @@ export default function Goals() {
   };
 
   return (
-    <div className="page-container space-y-8 pb-32">
+    <motion.div 
+      className="page-container space-y-8 pb-32"
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
        {/* Header */}
-       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="flex items-end justify-between px-2">
+       <motion.div variants={fadeInUp} className="flex items-end justify-between px-2">
         <div>
            <h1 className="text-fluid-h1 text-4xl">Your<br/>Goals</h1>
            <p className="text-sm text-gray-500 font-medium mt-2">
@@ -67,6 +74,7 @@ export default function Goals() {
            </p>
         </div>
         <motion.button 
+           variants={scaleIn}
            whileTap={{ scale: 0.9 }}
            onClick={() => setShowCreate(true)}
            className="w-12 h-12 rounded-full bg-[#1b4332] text-white flex items-center justify-center shadow-xl shadow-[#1b4332]/30"
@@ -78,8 +86,7 @@ export default function Goals() {
       {/* Summary Hero */}
       {goals.length > 0 && (
         <motion.div 
-           initial={{ opacity: 0, scale: 0.95 }}
-           animate={{ opacity: 1, scale: 1 }}
+           variants={scaleIn}
            className="glass-card !p-8 text-center relative overflow-hidden"
         >
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#d4a017] to-transparent opacity-50" />
@@ -90,7 +97,7 @@ export default function Goals() {
       )}
 
       {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <motion.div variants={staggerContainer} initial="hidden" animate="show" className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <AnimatePresence mode="popLayout">
           {goals.map((goal) => (
             <GoalCard
@@ -101,13 +108,13 @@ export default function Goals() {
             />
           ))}
         </AnimatePresence>
-      </div>
+      </motion.div>
 
       {goals.length === 0 && (
-        <div className="text-center py-20 opacity-50">
+        <motion.div variants={fadeInUp} className="text-center py-20 opacity-50">
           <Target size={48} className="mx-auto text-gray-300 mb-4" />
           <p className="text-gray-400">Set your first Ramadhan goal</p>
-        </div>
+        </motion.div>
       )}
 
       {/* Create Modal */}
@@ -189,6 +196,6 @@ export default function Goals() {
           </button>
         </div>
       </Modal>
-    </div>
+    </motion.div>
   );
 }

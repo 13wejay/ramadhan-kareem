@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import ChecklistItem from '../components/ChecklistItem';
 import Modal from '../components/Modal';
 import WeeklyChart from '../components/WeeklyChart';
+import { pageVariants, staggerContainer, fadeInUp, scaleIn } from '../utils/animations';
 
 export default function Checklist() {
   const navigate = useNavigate();
@@ -65,9 +66,15 @@ export default function Checklist() {
   };
 
   return (
-    <div className="page-container space-y-8 pb-32">
+    <motion.div 
+      className="page-container space-y-8 pb-32"
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       {/* Header */}
-      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="flex items-end justify-between px-2">
+      <motion.div variants={fadeInUp} className="flex items-end justify-between px-2">
         <div>
            <h1 className="text-fluid-h1 text-4xl">Checklist</h1>
            <p className="text-sm text-gray-500 font-medium">Track your spiritual habits</p>
@@ -79,14 +86,14 @@ export default function Checklist() {
       </motion.div>
 
       {/* Weekly Graph */}
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+      <motion.div variants={fadeInUp} transition={{ delay: 0.1 }}>
         <WeeklyChart />
       </motion.div>
 
       {/* Items List */}
-      <div className="space-y-3">
+      <motion.div variants={staggerContainer} initial="hidden" animate="show" className="space-y-3">
         <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest px-2 mb-2">Today's Goals</h3>
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence mode="popLayout" initial={false}>
           {todayRecord?.items.map((item) => (
             <ChecklistItem
               key={item.id}
@@ -115,10 +122,11 @@ export default function Checklist() {
             />
           ))}
         </AnimatePresence>
-      </div>
+      </motion.div>
 
       {/* Add Custom Item FAB */}
       <motion.button
+        variants={scaleIn}
         whileTap={{ scale: 0.95 }}
         onClick={() => openCustomModal()}
         className="fixed bottom-28 right-6 w-14 h-14 rounded-full bg-[#1b4332] text-white flex items-center justify-center shadow-2xl shadow-[#1b4332]/40 z-40 hover:bg-[#2d6a4f] transition-colors"
@@ -166,6 +174,6 @@ export default function Checklist() {
           </button>
         </div>
       </Modal>
-    </div>
+    </motion.div>
   );
 }

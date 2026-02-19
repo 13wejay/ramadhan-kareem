@@ -11,6 +11,7 @@ import { getRamadhanDay } from '../utils/dateHelpers';
 import CountdownTimer from '../components/CountdownTimer';
 import ProgressRing from '../components/ProgressRing';
 import InsightCard from '../components/InsightCard';
+import { pageVariants, staggerContainer, fadeInUp, scaleIn } from '../utils/animations';
 
 export default function Home() {
   const profile = useAuthStore((s) => s.profile);
@@ -20,11 +21,13 @@ export default function Home() {
   const [bookmarks, setBookmarks] = useState<string[]>([]);
 
   useEffect(() => {
-    loadToday();
-    loadPrayerTimes();
-    loadInsight();
-    setBookmarks(getBookmarkedIds());
-  }, []);
+    if (profile) {
+      loadToday();
+      loadPrayerTimes();
+      loadInsight();
+      setBookmarks(getBookmarkedIds());
+    }
+  }, [profile]);
 
   const loadPrayerTimes = async () => {
     if (!profile) return;
@@ -58,9 +61,16 @@ export default function Home() {
   const loadInsight = async () => {
     if (!profile) return;
     const day = getRamadhanDay(profile.ramadhanStartDate);
-    if (day < 1) return;
-    const data = await getDailyInsight(day);
-    setInsight(data);
+    
+    // If before Ramadhan, show the first insight as a preview/preparation
+    const targetDay = day < 1 ? 1 : day;
+    
+    try {
+      const data = await getDailyInsight(targetDay);
+      setInsight(data);
+    } catch (error) {
+      console.error('Error fetching insight:', error);
+    }
   };
 
   const completed = completedCount();
@@ -92,11 +102,18 @@ export default function Home() {
   ];
 
   return (
-    <div className="page-container space-y-8 pb-32">
+    <motion.div 
+      className="page-container space-y-8 pb-32"
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       {/* Header */}
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.05 }}
         className="text-center pt-8 relative"
       >
 
@@ -110,7 +127,7 @@ export default function Home() {
              </span>
           ) : (
             <>
-              Day {ramadhanDay} · <span className="text-[#1b4332] dark:text-[#52b788]">{todayPrayer?.hijriDate || '...'}</span>
+              {ramadhanDay} Ramadhan · <span className="text-[#1b4332] dark:text-[#52b788]">{todayPrayer?.hijriDate?.split(' ').slice(-2).join(' ') || '...'}</span>
             </>
           )}
         </p>
@@ -118,9 +135,9 @@ export default function Home() {
 
       {/* Iftar Countdown Hero */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
+        initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
+        transition={{ duration: 0.4, delay: 0.1 }}
         className="glass-card text-center !py-10 relative overflow-hidden group"
       >
         <div className="absolute top-0 right-0 p-4 opacity-50">
@@ -128,11 +145,47 @@ export default function Home() {
         </div>
         
         {todayPrayer ? (
-          <CountdownTimer
-            targetTime={todayPrayer.timings.Maghrib}
-            label="Until Iftar"
-            subLabel={`Maghrib at ${todayPrayer.timings.Maghrib}`}
-          />
+          (() => {
+            const now = new Date();
+            const getTargetDate = (timeStr: string) => {
+               const [h, m] = timeStr.split(':').map(Number);
+               const d = new Date();
+               d.setHours(h, m, 0, 0);
+               return d;
+            };
+
+            const maghrib = getTargetDate(todayPrayer.timings.Maghrib);
+            const isha = getTargetDate(todayPrayer.timings.Isha);
+
+            if (now < maghrib) {
+               return (
+                <CountdownTimer
+                  targetTime={todayPrayer.timings.Maghrib}
+                  label="Until Iftar"
+                  subLabel={`Maghrib at ${todayPrayer.timings.Maghrib}`}
+                  onComplete={() => window.location.reload()} 
+                />
+               );
+            } else if (now < isha) {
+               return (
+                <CountdownTimer
+                  targetTime={todayPrayer.timings.Isha}
+                  label="Until Isha"
+                  subLabel={`Isha at ${todayPrayer.timings.Isha}`}
+                  onComplete={() => window.location.reload()}
+                />
+               );
+            } else {
+               return (
+                 <div className="py-2">
+                   <p className="text-xs font-bold tracking-widest uppercase text-[#52B788] mb-4 opacity-80">Finished</p>
+                   <h2 className="text-2xl sm:text-3xl font-serif text-[#1b4332] dark:text-white leading-tight">
+                     Ramadhan Nights,<br/>Alhamdulillah, Rest Well
+                   </h2>
+                 </div>
+               );
+            }
+          })()
         ) : (
           <div className="py-8">
             <p className="text-gray-500">Loading prayer times...</p>
@@ -141,19 +194,17 @@ export default function Home() {
       </motion.div>
 
       {/* Quick Actions - Horizontal Scroll */}
-      <div className="space-y-4">
-        <div className="flex items-center justify-between px-1">
+      <motion.div variants={staggerContainer} initial="hidden" animate="show" className="space-y-4">
+        <motion.div variants={fadeInUp} className="flex items-center justify-between px-1">
           <h3 className="text-lg font-bold text-[#1b4332] dark:text-white">Quick Actions</h3>
           <span className="text-xs text-gray-400">Scroll for more →</span>
-        </div>
+        </motion.div>
         
         <div className="flex overflow-x-auto gap-4 -mx-6 px-6 pb-4 no-scrollbar snap-x">
           {quickActions.map((item, i) => (
             <Link key={item.to} to={item.to} className="snap-start shrink-0">
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 + i * 0.1 }}
+                variants={fadeInUp}
                 whileTap={{ scale: 0.95 }}
                 className="glass-card w-28 h-28 !p-0 flex flex-col items-center justify-center gap-3 hover:bg-white/40 dark:hover:bg-white/5 transition-colors"
               >
@@ -165,13 +216,13 @@ export default function Home() {
             </Link>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Today's Progress */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
+        transition={{ duration: 0.4, delay: 0.15 }}
         className="glass-card !p-6 flex items-center justify-between"
       >
         <div>
@@ -194,7 +245,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
+          transition={{ duration: 0.4 }}
           className="glass-card !p-0 overflow-hidden"
         >
           <div className="bg-[#1b4332]/5 dark:bg-white/5 p-4 border-b border-white/10 flex items-center justify-between">
@@ -217,6 +268,6 @@ export default function Home() {
 
       {/* Bottom Spacer */}
       <div className="h-4"></div>
-    </div>
+    </motion.div>
   );
 }

@@ -8,6 +8,7 @@ import {
 import { useAuthStore } from '../store/useAuthStore';
 import { useSettingsStore } from '../store/useSettingsStore';
 import Modal from '../components/Modal';
+import { pageVariants, fadeInUp, staggerContainer } from '../utils/animations';
 
 export default function Settings() {
   const navigate = useNavigate();
@@ -45,12 +46,16 @@ export default function Settings() {
     navigate('/onboarding');
   };
 
-
-
   return (
-    <div className="page-container space-y-10 pb-32">
+    <motion.div 
+      className="page-container space-y-10 pb-32"
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
        {/* Header */}
-       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
+       <motion.div variants={fadeInUp}>
          <h1 className="text-fluid-h1 text-4xl mb-4">Settings</h1>
          
          {/* Profile Card */}
@@ -70,11 +75,10 @@ export default function Settings() {
       </motion.div>
 
       {/* Settings Sections */}
-      <div className="space-y-8">
-
+      <motion.div variants={staggerContainer} initial="hidden" animate="show" className="space-y-8">
 
         {/* Notifications */}
-        <section>
+        <motion.section variants={fadeInUp}>
           <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest px-2 mb-3">Notifications</h3>
           <div className="glass-panel overflow-hidden">
             {[
@@ -110,10 +114,10 @@ export default function Settings() {
               </div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
         {/* Data Actions */}
-        <section>
+        <motion.section variants={fadeInUp}>
           <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest px-2 mb-3">Data & Privacy</h3>
           <div className="space-y-3">
              <button
@@ -138,15 +142,16 @@ export default function Settings() {
                 <ChevronRight size={18} className="text-gray-400 group-hover:translate-x-1 transition-transform" />
              </button>
           </div>
-        </section>
+        </motion.section>
 
-        <button
+        <motion.button
+          variants={fadeInUp}
           onClick={() => setShowReset(true)}
           className="w-full py-4 text-sm font-bold text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-2xl transition-colors flex items-center justify-center gap-2"
         >
           <LogOut size={18} /> Reset All Data & Sign Out
-        </button>
-      </div>
+        </motion.button>
+      </motion.div>
 
       {/* Edit Name Modal */}
       <Modal isOpen={editName} onClose={() => setEditName(false)} title="Edit Name">
@@ -191,6 +196,6 @@ export default function Settings() {
           </div>
         </div>
       </Modal>
-    </div>
+    </motion.div>
   );
 }

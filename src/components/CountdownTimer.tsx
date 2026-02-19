@@ -5,9 +5,10 @@ interface CountdownTimerProps {
   targetTime: string;
   label: string;
   subLabel?: string;
+  onComplete?: () => void;
 }
 
-export default function CountdownTimer({ targetTime, label, subLabel }: CountdownTimerProps) {
+export default function CountdownTimer({ targetTime, label, subLabel, onComplete }: CountdownTimerProps) {
   const [timeLeft, setTimeLeft] = useState<{ h: string; m: string; s: string } | null>(null);
 
   useEffect(() => {
@@ -15,6 +16,7 @@ export default function CountdownTimer({ targetTime, label, subLabel }: Countdow
       const seconds = getSecondsUntil(targetTime);
       if (seconds <= 0) {
         setTimeLeft(null);
+        onComplete?.();
         return;
       }
       const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
@@ -26,7 +28,7 @@ export default function CountdownTimer({ targetTime, label, subLabel }: Countdow
     update();
     const interval = setInterval(update, 1000);
     return () => clearInterval(interval);
-  }, [targetTime]);
+  }, [targetTime, onComplete]);
 
   if (!timeLeft) return null;
 

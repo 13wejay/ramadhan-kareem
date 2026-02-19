@@ -60,9 +60,9 @@ export default function WeeklyChart() {
 
       <div className="flex items-end justify-between gap-2 h-32">
         {data.map((day, i) => (
-          <div key={day.date} className="flex-1 flex flex-col items-center gap-2 group">
+          <div key={day.date} className="flex-1 flex flex-col items-center gap-2 group h-full">
             {/* Bar container */}
-            <div className="w-full relative rounded-full bg-white/20 dark:bg-white/5 overflow-hidden" style={{ height: '100%' }}>
+            <div className="w-full relative rounded-full bg-white/20 dark:bg-white/5 overflow-hidden flex-1">
               
               {/* Filled portion */}
               <motion.div

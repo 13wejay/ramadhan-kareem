@@ -209,11 +209,11 @@ const ShareInsightCard = forwardRef<HTMLDivElement, ShareInsightCardProps>(({ in
           }}
         >
           <span style={{ fontSize: '26px', fontWeight: '800', color: '#1B4332', letterSpacing: '0.08em', fontFamily: '"Plus Jakarta Sans", sans-serif', lineHeight: '1', marginTop: '-4px' }}>
-            RAMADHAN COMPANION
+            RAMADHAN COMPANION 2026
           </span>
         </div>
         <p style={{ fontSize: '20px', color: '#6B7280', letterSpacing: '0.15em', fontWeight: '500', textTransform: 'uppercase' }}>
-          www.ramadhan-companion.vercel.app
+          ramadhan-companion-26.vercel.app
         </p>
       </div>
     </div>

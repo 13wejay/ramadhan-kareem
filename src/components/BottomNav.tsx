@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Home, Check, Target, Clock, Lightbulb, Settings } from 'lucide-react';
+import { transition } from '../utils/animations';
 
 const navItems = [
   { path: '/home', icon: Home, label: 'Home' },
@@ -55,12 +56,7 @@ export default function BottomNav() {
                     <motion.div
                       layoutId="nav-pill"
                       className="absolute inset-0 bg-[#1b4332] dark:bg-white rounded-full z-0"
-                      transition={{ 
-                        type: 'spring', 
-                        stiffness: 350, 
-                        damping: 25,
-                        mass: 0.8
-                      }}
+                      transition={transition}
                       style={{ borderRadius: 9999 }}
                     />
                   )}

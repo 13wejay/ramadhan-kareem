@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { lsGet, lsSet } from '../services/localStorage';
 import { STORAGE_KEYS } from '../utils/storageKeys';
 import { getTodayString } from '../utils/dateHelpers';
+import { pageVariants } from '../utils/animations';
 
 interface ZikrRecord {
   date: string;
@@ -165,6 +166,10 @@ export default function Zikr() {
       className="min-h-dvh flex flex-col select-none cursor-pointer"
       style={{ backgroundColor: flash ? `${currentPhase.color}22` : 'transparent' }}
       onClick={handleTap}
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
     >
       {/* Top bar */}
       <div className="flex items-center justify-between p-4">
