@@ -5,14 +5,14 @@ export const transition = {
   type: 'spring',
   stiffness: 200,
   damping: 20,
-};
+} as const;
 
 // Gentler transition for layout changes
 export const layoutTransition = {
   type: 'spring',
   stiffness: 300,
   damping: 30,
-};
+} as const;
 
 // Page transitions
 export const pageVariants: Variants = {

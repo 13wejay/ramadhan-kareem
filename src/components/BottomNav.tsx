@@ -66,7 +66,7 @@ export default function BottomNav() {
                         animate={isActive ? { scale: [1, 1.2, 1], rotate: [0, -5, 5, 0] } : { scale: 1, rotate: 0 }}
                         transition={{ 
                             duration: 0.4, 
-                            type: 'spring', 
+                            type: 'spring' as const, 
                             stiffness: 400, 
                             damping: 17 
                         }}
